@@ -44,6 +44,22 @@ class MarcaController extends Controller
 
         //Metodo estatico
         //$marca = Marca::create($request->all());
+
+        //nome
+        //imagem
+        $regras = [
+            'nome' => 'required|unique:marcas',
+            'imagem' => 'required'
+        ];
+
+        $feedback = [
+            'required' => 'O campo :attribute é obrigatório',
+            'nome.unique' => 'O nome da marca já existe'
+        ];
+
+        $request->validate($regras, $feedback);
+        //stateless protocologo
+
         $marca = $this->marca->create($request->all());
         return response()->json($marca, 201);
     }
