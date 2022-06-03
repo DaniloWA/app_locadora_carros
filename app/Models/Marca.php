@@ -12,9 +12,20 @@ class Marca extends Model
 
     public function rules(){
         return [
-            'nome' => 'required|unique:marcas|min:3',
+            'nome' => 'required|unique:marcas,nome,'.$this->id.'|min:3',
             'imagem' => 'required'
         ];
+        /*
+                     1      2      3
+            unique:marcas,nome,$this->id
+            unique:<tabela>,<coluna>,<id>
+
+            1) tabela onde sera feito a pesquisa da existencia unica do valor que passamos
+            2) nome da coluna que será pesquisada na tabela - por padrão é o nome do input que passamos
+            3) id do registro que será desconsiderado na pesquisa
+
+            Ou seja ele vai pesquisar por todos os registro da Tabela Marcas na coluna nome exceto o id passado como 3 parametro
+        */
     }
 
     public function feedback() {
