@@ -51,7 +51,24 @@ class MarcaController extends Controller
         $request->validate($this->marca->rules() ,$this->marca->feedback());
         //stateless protocologo
 
-        $marca = $this->marca->create($request->all());
+        //dd($request->nome);
+        //dd($request->get('nome'));
+        //dd($request->input('nome'));
+
+        //dd($request->imagem);
+        $imagem = $request->file('imagem');
+        $imagem_urn = $imagem->store('imagens','public');
+
+        $marca = $this->marca->create([
+            'nome' => $request->nome,
+            'imagem' => $imagem_urn
+        ]);
+
+      /*        outra forma de fazer o mesmo que o de cima
+        $marca->nome = $request->nome
+        $marca->imagem = $imagem_urn
+        $marca->save() */
+
         return response()->json($marca, 201);
     }
 
@@ -109,7 +126,6 @@ class MarcaController extends Controller
 
             $regrasDinamicas = array();
 
-
             //percorrendo todas as regras definidas no Model
             foreach($marca->rules() as $input => $regra) {
 
@@ -124,8 +140,6 @@ class MarcaController extends Controller
        } else {
             $request->validate($marca->rules(), $marca->feedback());
        };
-
-
 
        $marca->update($request->all());
 
