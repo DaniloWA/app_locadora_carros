@@ -17,11 +17,21 @@ class ModeloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json($this->modelo->with('marca')->get(), 200);
-        //all() -> criando um obj de consulta + get() => collection / não permite modificar a consulta (ex: with())
-        //get() -> modificar a constula -> collection / permite modificação de consulta ex com o with()
+        $modelos = array();
+
+        if($request->has('atributos')){
+            $atributos = explode(',', $request->get('atributos'));
+            $modelos = $this->modelo->select($atributos)->with('marca')->get();
+            //dd($request->atributos);
+            //"id, nome, imagem"
+        } else {
+            $modelos = $this->modelo->with('marca')->get();
+        };
+        //$this->modelo->with('marca')->get()
+        return response()->json($modelos, 200);
+
     }
 
     /**
