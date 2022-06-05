@@ -19,7 +19,9 @@ class ModeloController extends Controller
      */
     public function index()
     {
-        return response()->json($this->modelo->all(), 200);
+        return response()->json($this->modelo->with('marca')->get(), 200);
+        //all() -> criando um obj de consulta + get() => collection / não permite modificar a consulta (ex: with())
+        //get() -> modificar a constula -> collection / permite modificação de consulta ex com o with()
     }
 
     /**
@@ -58,8 +60,8 @@ class ModeloController extends Controller
     //um objeto do tipo modelo que é carregado com base no ID enviado pra rota show
     public function show($id)
     {
-        //Sugestão de tipo, type hinting do php
-        $modelo = $this->modelo->find($id);
+
+        $modelo = $this->modelo->with('marca')->find($id);
         if($modelo === null){
             return response()->json(['erro' => 'Recurso pesquisado não existe'], 404);
         };

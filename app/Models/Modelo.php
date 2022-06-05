@@ -32,4 +32,9 @@ class Modelo extends Model
             'lugares.digits_between' => 'No minimo 1 lugar no maximo 20',
         ];
     }
+
+    public function marca(){
+        //UM modelo PERTENCE a UMA marca
+        return $this->belongsTo('App\Models\Marca');
+    }
 }
