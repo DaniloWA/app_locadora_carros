@@ -19,11 +19,10 @@ class MarcaController extends Controller
      */
     public function index(Request $request)
     {
-
         $marcaRepository = new MarcaRepository($this->marca);
 
         if($request->has('atributos_modelos')){
-            $atributos_modelos = 'modelos:'.$request->atributos_modelos;
+            $atributos_modelos = 'modelos:id,'.$request->atributos_modelos;
 
             $marcaRepository->selectAtributosRegistrosRelacionados($atributos_modelos);
         } else {
