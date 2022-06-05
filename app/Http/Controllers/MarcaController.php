@@ -48,7 +48,6 @@ class MarcaController extends Controller
 
         //nome
         //imagem
-
         $request->validate($this->marca->rules() ,$this->marca->feedback());
         //stateless protocologo
 

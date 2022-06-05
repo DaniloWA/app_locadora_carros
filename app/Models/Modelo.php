@@ -15,8 +15,8 @@ class Modelo extends Model
             'marca_id' => 'exists:marcas,id',
             'nome' => 'required|unique:modelos,nome,'.$this->id.'|min:3',
             'imagem' => 'required|file|mimes:png,jpeg,jpg',
-            'numero_portas' => 'required|integer|digits:between:1,5',
-            'lugares' => 'required|integer|digits:between:1,20',
+            'numero_portas' => 'required|integer|digits_between:1,5',
+            'lugares' => 'required|integer|digits_between:1,20',
             'air_bag' => 'required|boolean', // boolean: true | false ou 1, 0 | "1" , "0" strings também aceitas!
             'abs'=> 'required|boolean'
         ];
@@ -28,8 +28,8 @@ class Modelo extends Model
             'nome.unique' => 'O nome do modelo já existe',
             'nome.min' => 'O nome deve ter no minimo 3 caracteres',
             'imagem.mimes' => 'O arquivo deve ser uma imagem do tipo PNG',
-            'numero_portas.digits:between' => 'No minimo 1 porta no maximo 5',
-            'lugares.digits:between' => 'No minimo 1 lugar no maximo 20',
+            'numero_portas.digits_between' => 'No minimo 1 porta no maximo 5',
+            'lugares.digits_between' => 'No minimo 1 lugar no maximo 20',
         ];
     }
 }
