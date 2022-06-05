@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Modelo;
+use App\Repositories\ModeloRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -19,7 +20,33 @@ class ModeloController extends Controller
      */
     public function index(Request $request)
     {
-        $modelos = array();
+
+        $modeloRepository = new ModeloRepository($this->modelo);
+
+        if($request->has('atributos_marca')){
+            $atributos_marca = 'marca:id,'.$request->atributos_marca;
+
+            $modeloRepository->selectAtributosRegistrosRelacionados($atributos_marca);
+        } else {
+            $modeloRepository->selectAtributosRegistrosRelacionados('marca');
+        }
+
+        if($request->has('filtro')){
+            $modeloRepository->filtro($request->filtro);
+        }
+
+        if($request->has('atributos')){
+            $modeloRepository->selectAtributos($request->atributos);
+        };
+
+        //Metodo estatico
+        //$marcas = Marca::all();
+        //$marcas = $this->marca->with('modelos')->get();
+        return response()->json($modeloRepository->getResultado(), 200);
+
+
+
+        /* $modelos = array();
 
         if($request->has('atributos_marca')){
             $atributos_marca = $request->atributos_marca;
@@ -45,7 +72,7 @@ class ModeloController extends Controller
         };
 
         //$this->modelo->with('marca')->get()
-        return response()->json($modelos, 200);
+        return response()->json($modelos, 200); */
     }
 
     /**
