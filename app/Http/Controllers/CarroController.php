@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carro;
-use App\Http\Requests\StoreCarroRequest;
-use App\Http\Requests\UpdateCarroRequest;
 use App\Repositories\CarroRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -62,7 +60,7 @@ class CarroController extends Controller
      * @param  \App\Http\Requests\StoreCarroRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCarroRequest $request)
+    public function store(Request $request)
     {
 
         $request->validate($this->carro->rules() ,$this->carro->feedback());
@@ -110,7 +108,7 @@ class CarroController extends Controller
      * @param  \App\Models\Carro  $carro
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCarroRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $carro = $this->carro->find($id);
 
