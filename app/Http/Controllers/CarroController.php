@@ -152,10 +152,6 @@ class CarroController extends Controller
            return response()->json(['erro' => 'Impossível realizar a exclusão. O recurso solicitado não existe'], 404);
         };
 
-        //Remove o arquivo antigo caso um novo arquivo tenha sido enviado no request
-
-        Storage::disk('public')->delete($carro->imagem);
-
         $carro->delete();
           return response()->json(['msg' => 'O carro foi removido com sucesso!'], 201);
     }
