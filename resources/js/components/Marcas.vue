@@ -4,10 +4,8 @@
         <div class="col-md-8">
 
             <!-- Inicio do card de busca -->
-            <div class="card mb-3">
-                <div class="card-header">Busca de marcas</div>
-
-                <div class="card-body">
+            <card-component titulo="Busca de marcas">
+                <template v-slot:conteudo>
                     <div class="form-row">
                     <div class="col mb-3">
                         <input-container-component titulo="ID" id="inputID" id-help="idHelp" texto-ajuda="Opcional. Informe o ID da marca">
@@ -19,26 +17,26 @@
                             <input type="text" class="form-control" id="inputNome" aria-describedby="nomeHelp" placeholder="Nome da marca">
                         </input-container-component>
                     </div>
-                </div>
-                </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary btn-sm float-right">Pesquisar</button>
-                   </div>
-            </div>
+                    </div>
+                </template>
+
+                <template v-slot:rodape>
+                    <button type="submit" class="btn btn-primary btn-sm float-right">Pesquisar</button>
+                </template>
+            </card-component>
             <!-- Fim do card de busca -->
 
 
             <!-- Inicio do card de Listagem de marcas -->
-            <div class="card">
-                <div class="card-header">Relação de marcas</div>
+            <card-component titulo="Relação de marcas">
+                <template v-slot:conteudo>
+                         <table-component></table-component>
+                </template>
 
-                <div class="card-body ">
-                    <table-component></table-component>
-                </div>
-                <div class="card-footer">
-                    <button type="button" class="btn btn-primary btn-sm float-right">Adicionar</button>
-                </div>
-            </div>
+                <template v-slot:rodape>
+                     <button type="button" class="btn btn-primary btn-sm float-right">Adicionar</button>
+                </template>
+            </card-component>
             <!-- Fim do card de Listagem de marcas -->
         </div>
     </div>
