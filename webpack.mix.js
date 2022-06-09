@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+//const nrwlConfig = require("@nrwl/react/plugins/webpack.js");
 
 /*
  |--------------------------------------------------------------------------
@@ -14,3 +15,15 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css');
+
+
+
+/*     module.exports = (config, context) => {
+      // first call it so that @nrwl/react plugin adds its configs
+      nrwlConfig(config);
+
+      return {
+        ...config,
+        node: undefined
+      };
+    }; */
