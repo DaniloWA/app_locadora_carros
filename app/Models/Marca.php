@@ -33,7 +33,8 @@ class Marca extends Model
             'required' => 'O campo :attribute é obrigatório',
             'nome.unique' => 'O nome da marca já existe',
             'nome.min' => 'O nome deve ter no minimo 3 caracteres',
-            'imagem.mimes' => 'O arquivo deve ser uma imagem do tipo PNG'
+            'imagem.mimes' => 'O arquivo deve ser uma imagem do tipo PNG',
+            'imagem.file' => 'O arquivo deve ser uma imagem do tipo PNG'
         ];
     }
 
@@ -41,5 +42,5 @@ class Marca extends Model
         //UMA marca POSSUI MUITOS modelos
         return $this->hasMany('App\Models\Modelo');
     }
-    
+
 }
