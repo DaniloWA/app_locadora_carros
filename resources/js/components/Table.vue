@@ -49,6 +49,7 @@
         props: ['dados', 'titulos'],
         computed: {
             dadosFiltrados(){
+                console.log(this.dados)
                 let campos = Object.keys(this.titulos)
                 const dadosFiltrados = []
                 this.dados.map((item, chave) => {
