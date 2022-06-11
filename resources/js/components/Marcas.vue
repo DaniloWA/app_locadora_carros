@@ -63,6 +63,7 @@
             </div>
         </div>
 
+        <!-- inicio modal de inclusão de marca -->
         <modal-component id="modalMarca" titulo="Adicionar marca">
             <template v-slot:alertas>
                 <alert-component tipo="success" v-if="transacaoStatus == 'adicionado'" :detalhes="transacaoDetalhes" titulo="Cadastro realizado com sucesso!"></alert-component>
@@ -90,6 +91,23 @@
                 <button type="button" class="btn btn-primary" @click="salvar()">Salvar</button>
             </template>
         </modal-component>
+        <!-- final modal de inclusão de marca -->
+
+
+
+        <!-- inicio modal de visualização de marca -->
+
+        <modal-component id="modalMarcaVisualizar" titulo="Visualizar marca">
+            <template v-slot:alertas></template>
+            <template v-slot:conteudo>
+                Teste
+            </template>
+            <template v-slot:rodape>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </template>
+        </modal-component>
+
+        <!-- final modal de visualização de marca -->
 
     </div>
 </template>
@@ -158,7 +176,7 @@ export default {
 
             carregarLista(){
 
-                 let config = {
+                let config = {
                     headers: {
                         'Accept': 'application/json',
                         'Authorization': this.token
