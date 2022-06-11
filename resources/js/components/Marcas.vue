@@ -32,7 +32,7 @@
                 <card-component titulo="Relação de marcas">
                     <template v-slot:conteudo>
                         <table-component
-                        :dados="marcas"
+                        :dados="marcas.data"
                         :titulos="{
                             id: {titulo: 'ID', tipo: 'text'},
                             nome:{titulo: 'Nome', tipo: 'text'},
@@ -122,6 +122,7 @@ export default {
                 axios.get(this.urlBase, config)
                     .then(response => {
                         this.marcas = response.data
+                        console.log(this.marcas)
                     })
                     .catch(errors => {
                         console.log(errors)
