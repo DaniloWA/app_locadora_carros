@@ -188,10 +188,6 @@
         </modal-component>
         <!-- final modal de atualização de marca de marca -->
 
-
-
-
-
     </div>
 </template>
 
