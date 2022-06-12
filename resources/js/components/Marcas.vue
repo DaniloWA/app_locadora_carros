@@ -38,7 +38,11 @@
                             dataTarget: '#modalMarcaVisualizar'
                         }"
                         :atualizar="true"
-                        :remover="true"
+                        :remover="{
+                            visivel: true,
+                            dataToggle: 'modal',
+                            dataTarget: '#modalMarcaRemover'
+                        }"
                         :titulos="{
                             id: {titulo: 'ID', tipo: 'text'},
                             nome:{titulo: 'Nome', tipo: 'text'},
@@ -104,7 +108,6 @@
         <modal-component id="modalMarcaVisualizar" titulo="Visualizar marca">
             <template v-slot:alertas></template>
             <template v-slot:conteudo>
-                {{$store.state.item }}
                 <input-container-component titulo="ID">
                     <input type="text" class="form-control" :value="$store.state.item.id" disabled>
                 </input-container-component>
@@ -127,6 +130,28 @@
         </modal-component>
 
         <!-- final modal de visualização de marca -->
+
+
+
+          <!-- inicio modal de remoção de marca -->
+
+        <modal-component id="modalMarcaRemover" titulo="Remover marca">
+            <template v-slot:alertas></template>
+            <template v-slot:conteudo>
+                <input-container-component titulo="ID">
+                    <input type="text" class="form-control" :value="$store.state.item.id" disabled>
+                </input-container-component>
+
+                <input-container-component titulo="Nome">
+                    <input type="text" class="form-control" :value="$store.state.item.nome" disabled>
+                </input-container-component>
+            </template>
+            <template v-slot:rodape>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </template>
+        </modal-component>
+
+        <!-- final modal de remoção de marca -->
 
     </div>
 </template>
