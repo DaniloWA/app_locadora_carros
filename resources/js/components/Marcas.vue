@@ -169,10 +169,10 @@
             <template v-slot:conteudo>
                 <div class="form-group">
                     <input-container-component titulo="Nome da marca" id="novoNome" id-help="novoNomeHelp" texto-ajuda="Informe o nome da marca">
-                        <input type="text" class="form-control" id="novoNome" aria-describedby="novoNomeHelp" placeholder="Nome da marca" v-model="nomeMarca">
+                        <input type="text" class="form-control" id="novoNome" aria-describedby="novoNomeHelp" placeholder="Nome da marca" v-model="$store.state.item.nome">
                     </input-container-component>
                 </div>
-
+                {{ $store.state.item }}
                 <div class="form-group">
                     <input-container-component titulo="Imagem" id="novoImagem" id-help="novoImagemHelp" texto-ajuda="Selecione uma imagem no formato PNG">
                         <input type="file" class="form-control-file" id="novoImagem" aria-describedby="novoImagemHelp" placeholder="Selecione uma imagem" @change="carregarImagem($event)">
@@ -227,7 +227,30 @@ export default {
         methods: {
 
             atualizar(){
-                console.log(this.$store.state.item)
+
+                let formData = new FormData()
+                formData.append('_method', 'patch')
+                formData.append('nome', this.$store.state.item.nome)
+                formData.append('imagem', this.arquivoImagem[0])
+
+                let url = this.urlBase + '/' + this.$store.state.item.id
+                let config = {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Accept': 'application/json',
+                        'Authorization': this.token
+                    }
+                }
+
+                axios.post(url, formData, config)
+                    .then(response => {
+                        console.log('Atualizado', response)
+                        this.carregarLista()
+                    })
+                    .catch(errors => {
+                        console.log('Erro de atualização', errors.response)
+                    })
+
             },
 
             remover() {
