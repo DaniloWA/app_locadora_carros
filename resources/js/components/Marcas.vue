@@ -164,6 +164,8 @@
         <modal-component id="modalMarcaAtualizar" titulo="Atualizar marca">
 
             <template v-slot:alertas>
+                <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao" v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
+                <alert-component tipo="danger" titulo="Erro na transação" :detalhes="$store.state.transacao" v-if="$store.state.transacao.status == 'erro'"></alert-component>
             </template>
 
             <template v-slot:conteudo>
@@ -172,7 +174,6 @@
                         <input type="text" class="form-control" id="novoNome" aria-describedby="novoNomeHelp" placeholder="Nome da marca" v-model="$store.state.item.nome">
                     </input-container-component>
                 </div>
-                {{ $store.state.item }}
                 <div class="form-group">
                     <input-container-component titulo="Imagem" id="novoImagem" id-help="novoImagemHelp" texto-ajuda="Selecione uma imagem no formato PNG">
                         <input type="file" class="form-control-file" id="novoImagem" aria-describedby="novoImagemHelp" placeholder="Selecione uma imagem" @change="carregarImagem($event)">
@@ -248,13 +249,17 @@ export default {
 
                 axios.post(url, formData, config)
                     .then(response => {
-                        console.log('Atualizado', response)
+                        this.$store.state.transacao.status = 'sucesso'
+                        this.$store.state.transacao.mensagem = 'Registro de marca atualizado com sucesso!'
+
                         //limpando o campo de seleção de arquivos pelo ID
                         novoImagem.value = ''
                         this.carregarLista()
                     })
                     .catch(errors => {
-                        console.log('Erro de atualização', errors.response)
+                        this.$store.state.transacao.status = 'erro'
+                        this.$store.state.transacao.mensagem = errors.response.data.message
+                        this.$store.state.transacao.dados = errors.response.data.errors
                     })
 
             },
@@ -280,7 +285,7 @@ export default {
                 axios.post(url, formData, config)
                     .then(response=>{
                         this.$store.state.transacao.status = 'sucesso'
-                        this.$store.state.transacao.mensagem = 'Registro removido com sucesso'
+                        this.$store.state.transacao.mensagem = response.data.msg
                         this.carregarLista()
                     })
                     .catch(errors => {
