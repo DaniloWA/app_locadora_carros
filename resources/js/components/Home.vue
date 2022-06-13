@@ -3,9 +3,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Bem-vindo  -  {{ userName }}</div>
+                <div class="card-header">Bem-vindo {{ userName }}</div>
 
                 <div class="card-body">
+                    <h4>Detalhes da aplicação</h4>
                     Marcas registradas: {{ this.marcasData.total }} <br>
                     Modelos registrados: {{ this.modeloData.length }} <br>
                     Carros registrados: {{ this.carrosData.length }} <br>

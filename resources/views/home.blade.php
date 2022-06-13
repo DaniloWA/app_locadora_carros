@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <home-component user-name="{{Auth::user()->name}}"></home-component>
+    @guest
+        <index-component></index-component>
+    @endguest
+    @auth
+        <home-component user-name="{{Auth::user()->name}}"></home-component>
+    @endauth
+
 @endsection
