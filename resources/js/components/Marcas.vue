@@ -2,8 +2,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-
-
                 <!-- início do card de busca -->
                 <card-component titulo="Busca de marcas">
                     <template v-slot:conteudo>
