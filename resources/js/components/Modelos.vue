@@ -25,25 +25,25 @@
                 </card-component>
                 <!-- fim do card de busca -->
 
-                <!-- início do card de listagem de marcas -->
-                <card-component titulo="Relação de marcas">
+                <!-- início do card de listagem de modelo -->
+                <card-component titulo="Relação de modelos">
                     <template v-slot:conteudo>
                         <table-component
-                        :dados="marcas.data"
+                        :dados="modelo.data"
                         :visualizar="{
                             visivel: true,
                             dataToggle: 'modal',
-                            dataTarget: '#modalMarcaVisualizar'
+                            dataTarget: '#modalModeloVisualizar'
                         }"
                         :atualizar="{
                             visivel: true,
                               dataToggle: 'modal',
-                              dataTarget: '#modalMarcaAtualizar'
+                              dataTarget: '#modalModeloAtualizar'
                         }"
                         :remover="{
                             visivel: true,
                             dataToggle: 'modal',
-                            dataTarget: '#modalMarcaRemover'
+                            dataTarget: '#modalModeloRemover'
                         }"
                         :titulos="{
                             id: {titulo: 'ID', tipo: 'text'},
@@ -58,32 +58,32 @@
                         <div class="row">
                             <div class="col-10">
                                 <paginate-component>
-                                    <li v-for="l, key in marcas.links" :key="key" :class="l.active ? 'page-item active' : 'page-item'" @click="paginacao(l)">
+                                    <li v-for="l, key in modelo.links" :key="key" :class="l.active ? 'page-item active' : 'page-item'" @click="paginacao(l)">
                                         <a class="page-link" v-html="l.label" ></a>
                                     </li>
                                 </paginate-component>
                             </div>
                             <div class="col">
-                                <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modalMarca">Adicionar</button>
+                                <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modalModelo">Adicionar</button>
                             </div>
                         </div>
                     </template>
                 </card-component>
-                <!-- fim do card de listagem de marcas -->
+                <!-- fim do card de listagem de modelo -->
             </div>
         </div>
 
-        <!-- inicio modal de inclusão de marca -->
-        <modal-component id="modalMarca" titulo="Adicionar marca">
+        <!-- inicio modal de inclusão de modelo -->
+        <modal-component id="modalModelo" titulo="Adicionar modelo">
             <template v-slot:alertas>
                 <alert-component tipo="success" v-if="transacaoStatus == 'adicionado'" :detalhes="transacaoDetalhes" titulo="Cadastro realizado com sucesso!"></alert-component>
-                <alert-component tipo="danger" :detalhes="transacaoDetalhes" titulo="Erro ao tentar cadastrar a marca" v-if="transacaoStatus == 'erro'"></alert-component>
+                <alert-component tipo="danger" :detalhes="transacaoDetalhes" titulo="Erro ao tentar cadastrar o modelo" v-if="transacaoStatus == 'erro'"></alert-component>
             </template>
 
             <template v-slot:conteudo>
                 <div class="form-group">
-                    <input-container-component titulo="Nome da marca" id="atualizarNome" id-help="atualizarNomeHelp" texto-ajuda="Informe o nome da marca">
-                        <input type="text" class="form-control" id="atualizarNome" aria-describedby="atualizarNomeHelp" placeholder="Nome da marca" v-model="nomeMarca">
+                    <input-container-component titulo="Nome do modelo" id="atualizarNome" id-help="atualizarNomeHelp" texto-ajuda="Informe o nome do modelo">
+                        <input type="text" class="form-control" id="atualizarNome" aria-describedby="atualizarNomeHelp" placeholder="Nome do modelo" v-model="nomeModelo">
                     </input-container-component>
                 </div>
 
@@ -99,13 +99,13 @@
                 <button type="button" class="btn btn-primary" @click="salvar()">Salvar</button>
             </template>
         </modal-component>
-        <!-- final modal de inclusão de marca -->
+        <!-- final modal de inclusão de modelo -->
 
 
 
-        <!-- inicio modal de visualização de marca -->
+        <!-- inicio modal de visualização de modelo -->
 
-        <modal-component id="modalMarcaVisualizar" titulo="Visualizar marca">
+        <modal-component id="modalModeloVisualizar" titulo="Visualizar modelo">
             <template v-slot:alertas></template>
             <template v-slot:conteudo>
                 <input-container-component titulo="ID">
@@ -129,13 +129,13 @@
             </template>
         </modal-component>
 
-        <!-- final modal de visualização de marca -->
+        <!-- final modal de visualização de modelo -->
 
 
 
-        <!-- inicio modal de remoção de marca -->
+        <!-- inicio modal de remoção de modelo -->
 
-        <modal-component id="modalMarcaRemover" titulo="Remover marca">
+        <modal-component id="modalModeloRemover" titulo="Remover modelo">
             <template v-slot:alertas>
                 <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao" v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
                 <alert-component tipo="danger" titulo="Erro na transação" :detalhes="$store.state.transacao" v-if="$store.state.transacao.status == 'erro'"></alert-component>
@@ -155,11 +155,11 @@
             </template>
         </modal-component>
 
-        <!-- final modal de remoção de marca -->
+        <!-- final modal de remoção de modelo -->
 
 
-        <!-- inicio modal de atualização de marca de marca -->
-        <modal-component id="modalMarcaAtualizar" titulo="Atualizar marca">
+        <!-- inicio modal de atualização de modelo de modelo -->
+        <modal-component id="modalModeloAtualizar" titulo="Atualizar modelo">
 
             <template v-slot:alertas>
                 <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao" v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
@@ -168,8 +168,8 @@
 
             <template v-slot:conteudo>
                 <div class="form-group">
-                    <input-container-component titulo="Nome da marca" id="novoNome" id-help="novoNomeHelp" texto-ajuda="Informe o nome da marca">
-                        <input type="text" class="form-control" id="novoNome" aria-describedby="novoNomeHelp" placeholder="Nome da marca" v-model="$store.state.item.nome">
+                    <input-container-component titulo="Nome do modelo" id="novoNome" id-help="novoNomeHelp" texto-ajuda="Informe o nome do modelo">
+                        <input type="text" class="form-control" id="novoNome" aria-describedby="novoNomeHelp" placeholder="Nome do modelo" v-model="$store.state.item.nome">
                     </input-container-component>
                 </div>
                 <div class="form-group">
@@ -184,7 +184,7 @@
                 <button type="button" class="btn btn-primary" @click="atualizar()">Atualizar</button>
             </template>
         </modal-component>
-        <!-- final modal de atualização de marca de marca -->
+        <!-- final modal de atualização de modelo de modelo -->
 
     </div>
 </template>
@@ -193,14 +193,14 @@
 export default {
         data() {
             return {
-                urlBase: 'http://localhost:8000/api/v1/marca',
+                urlBase: 'http://localhost:8000/api/v1/modelo',
                 urlPaginacao: '',
                 urlFiltro: '',
-                nomeMarca: '',
+                nomeModelo: '',
                 arquivoImagem: [],
                 transacaoStatus: '',
                 transacaoDetalhes: {},
-                marcas: { data:[] },
+                modelo: { data:[] },
                 busca: { id:'', nome:'' }
             }
         },
@@ -227,7 +227,7 @@ export default {
                 axios.post(url, formData, config)
                     .then(response => {
                         this.$store.state.transacao.status = 'sucesso'
-                        this.$store.state.transacao.mensagem = 'Registro de marca atualizado com sucesso!'
+                        this.$store.state.transacao.mensagem = 'Registro de modelo atualizado com sucesso!'
 
                         //limpando o campo de seleção de arquivos pelo ID
                         novoImagem.value = ''
@@ -302,7 +302,7 @@ export default {
 
                 axios.get(url)
                     .then(response => {
-                        this.marcas = response.data
+                        this.modelo = response.data
                     })
                     .catch(errors => {
                         console.log(errors)
@@ -314,7 +314,7 @@ export default {
             },
             salvar() {
                 let formData = new FormData();
-                formData.append('nome', this.nomeMarca)
+                formData.append('nome', this.nomeModelo)
                 formData.append('imagem', this.arquivoImagem[0])
 
                 let config = {
