@@ -7,5 +7,4 @@
     @auth
         <home-component user-name="{{Auth::user()->name}}"></home-component>
     @endauth
-
 @endsection
