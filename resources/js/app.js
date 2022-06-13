@@ -45,6 +45,7 @@ Vue.component('card-component', require('./components/Card.vue').default);
 Vue.component('modal-component', require('./components/Modal.vue').default);
 Vue.component('alert-component', require('./components/Alert.vue').default);
 Vue.component('paginate-component', require('./components/Paginate.vue').default);
+Vue.component('index-component', require('./components/Index.vue').default);
 
 
 
