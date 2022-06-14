@@ -101,21 +101,23 @@
 
                 <div class="form-group">
                     <input-container-component titulo="Airbag" id="atualizarAirbag" id-help="atualizarAirbagHelp" texto-ajuda="Informe se tem Airbag">
-                        <input type="checkbox" class="form-control" id="atualizarAirbag" aria-describedby="atualizarAirbagHelp" placeholder="Airbag" v-model="checkAirbag">
+                        <input type="checkbox" class="form-control" id="atualizarAirbag" aria-describedby="atualizarAirbagHelp" placeholder="Airbag" v-model="Airbag">
                     </input-container-component>
                 </div>
-                    {{ checkAirbag }} - checkAirbag
+
                 <div class="form-group">
                     <input-container-component titulo="ABS" id="atualizarABS" id-help="atualizarABSHelp" texto-ajuda="Informe se tem ABS">
-                        <input type="checkbox" class="form-control" id="atualizarABS" aria-describedby="atualizarABSHelp" placeholder="ABS" v-model="checkABS">
+                        <input type="checkbox" class="form-control" id="atualizarABS" aria-describedby="atualizarABSHelp" placeholder="ABS" v-model="ABS">
                     </input-container-component>
                 </div>
-                    {{ checkABS }} - checkABS
+
                 <div class="form-group">
                     <input-container-component titulo="Imagem" id="atualizarImagem" id-help="atualizarImagemHelp" texto-ajuda="Selecione uma imagem no formato PNG">
                         <input type="file" class="form-control-file" id="atualizarImagem" aria-describedby="atualizarImagemHelp" placeholder="Selecione uma imagem" @change="carregarImagem($event)">
                     </input-container-component>
                 </div>
+                {{ checkAirbag }} - checkAirbag <br>
+                {{ checkABS }} - checkABS
             </template>
 
             <template v-slot:rodape>
@@ -214,6 +216,7 @@
 </template>
 
 <script>
+
 export default {
         data() {
             return {
@@ -223,14 +226,26 @@ export default {
                 nomeModelo: '',
                 numeroPortas: '',
                 numeroLugares: '',
-                checkAirbag: false,
-                checkABS: false,
+                Airbag: false,
+                ABS: false,
                 arquivoImagem: [],
                 transacaoStatus: '',
                 transacaoDetalhes: {},
                 modelo: { data:[] },
                 busca: { id:'', nome:'' }
             }
+        },
+        computed: {
+            checkAirbag(){
+               if(this.Airbag == true ) return this.Airbag = 1
+               if(this.Airbag == false ) return this.Airbag = 0
+            },
+            checkABS(){
+               if(this.ABS == true ) return this.ABS = 1
+               if(this.ABS == false ) return this.ABS = 0
+            },
+
+
         },
         methods: {
 
