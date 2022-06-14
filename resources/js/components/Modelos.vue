@@ -331,13 +331,13 @@ export default {
             },
 
 
-            paginacao(l){
+/*             paginacao(l){
                 if(l.url) {
                     this.urlPaginacao = l.url.split('?')[1] //ajustando a url de consulta co o parâmetro de página
                     this.carregarLista() //requisitando novamente os dados para nossa API
                 }
 
-            },
+            }, */
 
             carregarLista(){
 
@@ -346,6 +346,7 @@ export default {
                 axios.get(url)
                     .then(response => {
                         this.modelo = response.data
+                        console.log(this.modelo)
                     })
                     .catch(errors => {
                         console.log(errors)
@@ -358,6 +359,10 @@ export default {
             salvar() {
                 let formData = new FormData();
                 formData.append('nome', this.nomeModelo)
+                formData.append('numero_portas', this.numeroPortas)
+                formData.append('lugares', this.numeroLugares)
+                formData.append('air_bag', this.checkAirbag)
+                formData.append('abs', this.checkABS)
                 formData.append('imagem', this.arquivoImagem[0])
 
                 let config = {
