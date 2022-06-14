@@ -29,7 +29,7 @@
                 <card-component titulo="Relação de modelos">
                     <template v-slot:conteudo>
                         <table-component
-                        :dados="modelo.data"
+                        :dados="modelo"
                         :visualizar="{
                             visivel: true,
                             dataToggle: 'modal',
@@ -87,6 +87,30 @@
                     </input-container-component>
                 </div>
 
+                <div class="form-group">
+                    <input-container-component titulo="Numero de portas" id="atualizarPortas" id-help="atualizarPortasHelp" texto-ajuda="Informe o numero de portas">
+                        <input type="number" class="form-control" id="atualizarPortas" aria-describedby="atualizarPortasHelp" placeholder="Numero de portas" v-model="numeroPortas">
+                    </input-container-component>
+                </div>
+
+                <div class="form-group">
+                    <input-container-component titulo="Numero de lugares" id="atualizarLugares" id-help="atualizarLugaresHelp" texto-ajuda="Informe o numero de lugares">
+                        <input type="number" class="form-control" id="atualizarLugares" aria-describedby="atualizarLugaresHelp" placeholder="Numero de lugares" v-model="numeroLugares">
+                    </input-container-component>
+                </div>
+
+                <div class="form-group">
+                    <input-container-component titulo="Airbag" id="atualizarAirbag" id-help="atualizarAirbagHelp" texto-ajuda="Informe se tem Airbag">
+                        <input type="checkbox" class="form-control" id="atualizarAirbag" aria-describedby="atualizarAirbagHelp" placeholder="Airbag" v-model="checkAirbag">
+                    </input-container-component>
+                </div>
+                    {{ checkAirbag }} - checkAirbag
+                <div class="form-group">
+                    <input-container-component titulo="ABS" id="atualizarABS" id-help="atualizarABSHelp" texto-ajuda="Informe se tem ABS">
+                        <input type="checkbox" class="form-control" id="atualizarABS" aria-describedby="atualizarABSHelp" placeholder="ABS" v-model="checkABS">
+                    </input-container-component>
+                </div>
+                    {{ checkABS }} - checkABS
                 <div class="form-group">
                     <input-container-component titulo="Imagem" id="atualizarImagem" id-help="atualizarImagemHelp" texto-ajuda="Selecione uma imagem no formato PNG">
                         <input type="file" class="form-control-file" id="atualizarImagem" aria-describedby="atualizarImagemHelp" placeholder="Selecione uma imagem" @change="carregarImagem($event)">
@@ -197,6 +221,10 @@ export default {
                 urlPaginacao: '',
                 urlFiltro: '',
                 nomeModelo: '',
+                numeroPortas: '',
+                numeroLugares: '',
+                checkAirbag: false,
+                checkABS: false,
                 arquivoImagem: [],
                 transacaoStatus: '',
                 transacaoDetalhes: {},
