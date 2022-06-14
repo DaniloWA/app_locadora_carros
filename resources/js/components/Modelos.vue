@@ -64,7 +64,7 @@
                                 </paginate-component>
                             </div>
                             <div class="col">
-                                <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modalModelo">Adicionar</button>
+                                <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modalModelo" @click="carregarMarcas()">Adicionar</button>
                             </div>
                         </div>
                     </template>
@@ -79,8 +79,17 @@
                 <alert-component tipo="success" v-if="transacaoStatus == 'adicionado'" :detalhes="transacaoDetalhes" titulo="Cadastro realizado com sucesso!"></alert-component>
                 <alert-component tipo="danger" :detalhes="transacaoDetalhes" titulo="Erro ao tentar cadastrar o modelo" v-if="transacaoStatus == 'erro'"></alert-component>
             </template>
-
             <template v-slot:conteudo>
+                <div class="form-group">
+                    <input-container-component titulo="Marca do modelo" id="atualizarMarca" id-help="atualizarMarcaHelp" texto-ajuda="Informe a marca do modelo">
+                        <select class="form-control" id="atualizarMarca" aria-describedby="atualizarMarcaHelp" placeholder="Marca do modelo" aria-placeholder="Selecione uma marca" v-model="selectMarca">
+                            <option value="" disabled selected hidden>Marca do modelo</option>
+                            <option value="apple">apple</option>
+                        </select>
+                    </input-container-component>
+                    {{ marca }}
+                </div>
+
                 <div class="form-group">
                     <input-container-component titulo="Nome do modelo" id="atualizarNome" id-help="atualizarNomeHelp" texto-ajuda="Informe o nome do modelo">
                         <input type="text" class="form-control" id="atualizarNome" aria-describedby="atualizarNomeHelp" placeholder="Nome do modelo" v-model="nomeModelo">
@@ -116,8 +125,6 @@
                         <input type="file" class="form-control-file" id="atualizarImagem" aria-describedby="atualizarImagemHelp" placeholder="Selecione uma imagem" @change="carregarImagem($event)">
                     </input-container-component>
                 </div>
-                {{ checkAirbag }} - checkAirbag <br>
-                {{ checkABS }} - checkABS
             </template>
 
             <template v-slot:rodape>
@@ -223,6 +230,8 @@ export default {
                 urlBase: 'http://localhost:8000/api/v1/modelo',
                 urlPaginacao: '',
                 urlFiltro: '',
+                dataMarcas: '',
+                selectMarca: '',
                 nomeModelo: '',
                 numeroPortas: '',
                 numeroLugares: '',
@@ -338,6 +347,33 @@ export default {
                 }
 
             }, */
+
+
+
+            carregarMarcas(){
+                let url = "http://localhost:8000/api/v1/marca"
+
+                axios.get(url)
+                    .then(response => {
+                    for(let i = 0; i < 1 ; i++){
+                        axios.get(url)
+                            .then(response => {
+                                if(response.data)
+                                this.dataMarcas += response.data
+                        })
+                        .catch(errors => {
+                            console.log(errors)
+                        })
+                    }
+                        this.dataMarcas += response.data
+                    })
+                    .catch(errors => {
+                        console.log(errors)
+                    })
+
+
+                console.log(this.dataMarcas)
+            },
 
             carregarLista(){
 
