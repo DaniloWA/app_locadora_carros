@@ -147,6 +147,8 @@
         <modal-component id="modalModeloVisualizar" titulo="Visualizar modelo">
             <template v-slot:alertas></template>
             <template v-slot:conteudo>
+                <div>
+                </div>
                 <input-container-component titulo="ID">
                     <input type="text" class="form-control" :value="$store.state.item.id" disabled>
                 </input-container-component>
@@ -156,15 +158,15 @@
                 </input-container-component>
 
                 <input-container-component titulo="Marca">
-                    <input type="text" class="form-control" :value="$store.state.item.marca_name" disabled>
+                    <input type="text" class="form-control" :value="$store.state.item.marca.nome" disabled>
                 </input-container-component>
 
                 <input-container-component titulo="Numero de portas">
-                    <input type="text" class="form-control" :value="$store.state.item.marca" disabled>
+                    <input type="text" class="form-control" :value="$store.state.item.numero_portas" disabled>
                 </input-container-component>
 
                 <input-container-component titulo="Numero de lugares">
-                    <input type="text" class="form-control" :value="$store.state.item.marca" disabled>
+                    <input type="text" class="form-control" :value="$store.state.item.lugares" disabled>
                 </input-container-component>
 
                 <input-container-component titulo="Airbag">
@@ -399,7 +401,6 @@ export default {
                 axios.get(url)
                     .then(response => {
                         this.modelo = response.data
-                        console.log(this.modelo)
                     })
                     .catch(errors => {
                         console.log(errors)
