@@ -51,7 +51,6 @@
                 axios.get('http://localhost:8000/api/v1/carro')
                     .then(response => {
                         this.carrosData = response.data
-                        console.log(response.data)
                     })
                     .catch(errors => {
                         console.log(errors)
@@ -60,7 +59,6 @@
                 axios.get('http://localhost:8000/api/v1/cliente')
                     .then(response => {
                         this.clientesData = response.data
-                        console.log(response.data)
                     })
                     .catch(errors => {
                         console.log(errors)
