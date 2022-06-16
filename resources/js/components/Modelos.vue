@@ -48,11 +48,11 @@
                         :titulos="{
                             id: {titulo: 'ID', tipo: 'text'},
                             nome:{titulo: 'Nome', tipo: 'text'},
-                            marca_id:{titulo: 'Marca', tipo: 'text'},
-                            numero_portas:{titulo: 'N/Portas', tipo: 'text'},
-                            lugares:{titulo: 'N/Lugares', tipo: 'text'},
                             air_bag:{titulo: 'Airbag', tipo: 'boolean'},
                             abs:{titulo: 'ABS', tipo: 'boolean'},
+                            numero_portas:{titulo: 'N/portas', tipo: 'off'},
+                            lugares:{titulo: 'N/lugares', tipo: 'off'},
+                            marca:{titulo: 'marca', tipo: 'off'},
                             imagem:{titulo: 'Imagem', tipo: 'imagem'},
                             created_at:{titulo: 'Data de criação', tipo: 'data'}
                         }"
@@ -77,6 +77,8 @@
                 <!-- fim do card de listagem de modelo -->
             </div>
         </div>
+
+
 
         <!-- inicio modal de inclusão de modelo -->
         <modal-component id="modalModelo" titulo="Adicionar modelo">
@@ -164,6 +166,7 @@
             <template v-slot:rodape>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             </template>
+
         </modal-component>
 
         <!-- final modal de visualização de modelo -->
@@ -193,6 +196,7 @@
         </modal-component>
 
         <!-- final modal de remoção de modelo -->
+
 
 
         <!-- inicio modal de atualização de modelo de modelo -->
@@ -235,6 +239,7 @@ export default {
                 urlPaginacao: '',
                 urlFiltro: '',
                 dataMarcas: '',
+                dataMarcasModal:'',
                 selectMarca: '',
                 nomeModelo: '',
                 numeroPortas: '',
@@ -322,7 +327,6 @@ export default {
 
             pesquisar(){
                 //console.log(this.busca)
-
                 let filtro = ''
 
                 for(let chave in this.busca) {
@@ -354,8 +358,6 @@ export default {
                     .catch(errors => {
                         console.log(errors)
                     })
-
-
             },
 
             carregarLista(){
