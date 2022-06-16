@@ -61,7 +61,6 @@
                 this.$store.state.transacao.mensagem = ''
                 this.$store.state.transacao.dados = ''
                 this.$store.state.item = obj
-                console.log(obj, ' aqui ')
             },
             confirmTitle(titulo){
                 if(titulo == 'N/portas' || titulo == 'marca' || titulo == 'N/lugares'){
@@ -74,7 +73,6 @@
         computed: {
             dadosFiltrados(){
                 let campos = Object.keys(this.titulos)
-                console.log(this.titulos)
                 const dadosFiltrados = []
                 this.dados.map((item, chave) => {
 
@@ -85,7 +83,6 @@
                     })
                     dadosFiltrados.push(itemFiltrado)
                 })
-                console.log(dadosFiltrados)
                 return dadosFiltrados
             }
         }
