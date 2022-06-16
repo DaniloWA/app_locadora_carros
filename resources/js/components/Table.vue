@@ -10,23 +10,23 @@
             </tr>
         </thead>
         <tbody>
-
             <tr v-for="obj, chave in dadosFiltrados" :key="chave">
-                <td v-for="valor, chaveValor in obj" :key="chaveValor">
-                    <span v-if="titulos[chaveValor].tipo == 'text'">{{ valor }}</span>
-                    <span v-if="titulos[chaveValor].tipo == 'boolean'">{{ valor == 1 ? "sim" : "não" }}</span>
-                    <span v-if="titulos[chaveValor].tipo == 'data'">{{ valor | formatadaDataTempo }}</span>
-                    <span v-if="titulos[chaveValor].tipo == 'imagem'">
-                         <img :src="'/storage/' + valor" width="30" height="30" alt="img">
-                    </span>
-                </td>
+                <template v-for="valor, chaveValor in obj">
+                    <td v-if="titulos[chaveValor].tipo != 'off'" :key="chaveValor">
+                        <span v-if="titulos[chaveValor].tipo == 'text'">{{ valor }}</span>
+                        <span v-if="titulos[chaveValor].tipo == 'boolean'">{{ valor == 1 ? "sim" : "não" }}</span>
+                        <span v-if="titulos[chaveValor].tipo == 'data'">{{ valor | formatadaDataTempo }}</span>
+                        <span v-if="titulos[chaveValor].tipo == 'imagem'">
+                            <img :src="'/storage/' + valor" width="30" height="30" alt="img">
+                        </span>
+                    </td>
+                </template>
                 <td v-if="visualizar.visivel || atualizar.visivel || remover.visivel">
                      <button v-if="visualizar.visivel" class="btn btn-outline-primary btn-sm" :data-toggle="visualizar.dataToggle" :data-target="visualizar.dataTarget" @click="setStore(obj)">Visualziar</button>
                      <button v-if="atualizar.visivel"  class="btn btn-outline-primary btn-sm" :data-toggle="atualizar.dataToggle" :data-target="atualizar.dataTarget" @click="setStore(obj)">Atualizar</button>
                      <button v-if="remover.visivel"  class="btn btn-outline-danger btn-sm" :data-toggle="remover.dataToggle" :data-target="remover.dataTarget" @click="setStore(obj)">Remover</button>
                 </td>
             </tr>
-
 
           <!--
             <tr v-for="obj in dados" :key="obj.id">
@@ -80,15 +80,12 @@
 
                     let itemFiltrado = {}
                     campos.forEach(campo => {
-                        if(campo == 'lugares' || campo == 'marca' || campo == 'numero_portas'){
-                            return
-                        }
                         itemFiltrado[campo] = item[campo] // utilizar a sintaxe de array para atribuir valores a objetos
 
                     })
                     dadosFiltrados.push(itemFiltrado)
                 })
-
+                console.log(dadosFiltrados)
                 return dadosFiltrados
             }
         }
