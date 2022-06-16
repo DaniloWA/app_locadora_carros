@@ -182,7 +182,7 @@
                 </input-container-component>
 
                 <input-container-component titulo="Data de criação">
-                    <input type="text" class="form-control" :value="$store.state.item.created_at" disabled>
+                    <input type="text" class="form-control" :value="$store.state.item.created_at | formatadaDataTempo" disabled>
                 </input-container-component>
             </template>
             <template v-slot:rodape>
