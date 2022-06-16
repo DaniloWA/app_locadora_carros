@@ -48,6 +48,11 @@
                         :titulos="{
                             id: {titulo: 'ID', tipo: 'text'},
                             nome:{titulo: 'Nome', tipo: 'text'},
+                            marca_id:{titulo: 'Marca', tipo: 'text'},
+                            numero_portas:{titulo: 'N/Portas', tipo: 'text'},
+                            lugares:{titulo: 'N/Lugares', tipo: 'text'},
+                            air_bag:{titulo: 'Airbag', tipo: 'boolean'},
+                            abs:{titulo: 'ABS', tipo: 'boolean'},
                             imagem:{titulo: 'Imagem', tipo: 'imagem'},
                             created_at:{titulo: 'Data de criação', tipo: 'data'}
                         }"
