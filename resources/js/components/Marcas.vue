@@ -265,7 +265,6 @@ export default {
             },
 
             pesquisar(){
-                //console.log(this.busca)
 
                 let filtro = ''
 
@@ -329,7 +328,6 @@ export default {
                         this.transacaoDetalhes = {
                             mensagem: 'ID do registro: ' + response.data.id
                         }
-                        console.log(response)
                     })
                     .catch(errors => {
                         this.transacaoStatus = 'erro'
@@ -337,7 +335,6 @@ export default {
                             mensagem: errors.response.data.message,
                             dados: errors.response.data.errors
                         }
-                        //console.log(errors.response.data)
                     })
             }
         },
