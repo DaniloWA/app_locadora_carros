@@ -84,10 +84,9 @@
                     <input-container-component titulo="Marca do modelo" id="atualizarMarca" id-help="atualizarMarcaHelp" texto-ajuda="Informe a marca do modelo">
                         <select class="form-control" id="atualizarMarca" aria-describedby="atualizarMarcaHelp" placeholder="Marca do modelo" aria-placeholder="Selecione uma marca" v-model="selectMarca">
                             <option value="" disabled selected hidden>Marca do modelo</option>
-                            <option value="apple">apple</option>
+                            <option v-for="data, key in dataMarcas" :key="key" :value="data.id">{{ data.nome }}</option>
                         </select>
                     </input-container-component>
-                    {{ marca }}
                 </div>
 
                 <div class="form-group">
@@ -339,40 +338,19 @@ export default {
 
             },
 
-
-/*             paginacao(l){
-                if(l.url) {
-                    this.urlPaginacao = l.url.split('?')[1] //ajustando a url de consulta co o parâmetro de página
-                    this.carregarLista() //requisitando novamente os dados para nossa API
-                }
-
-            }, */
-
-
-
             carregarMarcas(){
-                let url = "http://localhost:8000/api/v1/marca"
+                let url = "http://localhost:8000/api/v1/marca/data/all"
 
                 axios.get(url)
                     .then(response => {
-                    for(let i = 0; i < 1 ; i++){
-                        axios.get(url)
-                            .then(response => {
-                                if(response.data)
-                                this.dataMarcas += response.data
-                        })
-                        .catch(errors => {
-                            console.log(errors)
-                        })
-                    }
-                        this.dataMarcas += response.data
+                        this.dataMarcas = response.data
+                        console.log(this.dataMarcas)
                     })
                     .catch(errors => {
                         console.log(errors)
                     })
 
 
-                console.log(this.dataMarcas)
             },
 
             carregarLista(){
@@ -394,6 +372,7 @@ export default {
             },
             salvar() {
                 let formData = new FormData();
+                formData.append('marca_id', this.selectMarca)
                 formData.append('nome', this.nomeModelo)
                 formData.append('numero_portas', this.numeroPortas)
                 formData.append('lugares', this.numeroLugares)
@@ -413,7 +392,7 @@ export default {
                         this.transacaoDetalhes = {
                             mensagem: 'ID do registro: ' + response.data.id
                         }
-                        console.log(response)
+                        this.carregarLista()
                     })
                     .catch(errors => {
                         this.transacaoStatus = 'erro'
