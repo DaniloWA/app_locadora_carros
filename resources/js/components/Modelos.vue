@@ -155,6 +155,26 @@
                     <input type="text" class="form-control" :value="$store.state.item.nome" disabled>
                 </input-container-component>
 
+                <input-container-component titulo="Marca">
+                    <input type="text" class="form-control" :value="$store.state.item.marca_name" disabled>
+                </input-container-component>
+
+                <input-container-component titulo="Numero de portas">
+                    <input type="text" class="form-control" :value="$store.state.item.marca" disabled>
+                </input-container-component>
+
+                <input-container-component titulo="Numero de lugares">
+                    <input type="text" class="form-control" :value="$store.state.item.marca" disabled>
+                </input-container-component>
+
+                <input-container-component titulo="Airbag">
+                    <input type="text" class="form-control" :value="$store.state.item.air_bag == 1 ? 'sim' : 'não'" disabled>
+                </input-container-component>
+
+                <input-container-component titulo="ABS">
+                    <input type="text" class="form-control" :value="$store.state.item.abs == 1 ? 'sim' : 'não'" disabled>
+                </input-container-component>
+
                 <input-container-component titulo="Imagem">
                     <img v-if="$store.state.item.imagem" :src="'storage/' + $store.state.item.imagem" alt="img">
                 </input-container-component>
@@ -263,10 +283,22 @@ export default {
                if(this.ABS == false ) return this.ABS = 0
             },
 
-
         },
         methods: {
+            pesquisarDadosModal(){
+                //console.log(this.busca)
+                let url = "http://localhost:8000/api/v1/marca/" + this.$store.state.item.id
 
+                axios.get(url)
+                    .then(response => {
+                        this.dataMarcasModal = response.data
+                        console.log(this.dataMarcasModal, " Teste ")
+                    })
+                    .catch(errors => {
+                        console.log(errors)
+                    })
+
+            },
             atualizar(){
 
                 let formData = new FormData()
