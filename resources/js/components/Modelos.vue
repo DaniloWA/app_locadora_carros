@@ -271,7 +271,7 @@ export default {
                 arquivoImagem: [],
                 transacaoStatus: '',
                 transacaoDetalhes: {},
-                modelo: { data:[] },
+                modelo: [],
                 busca: { id:'', nome:'' }
             }
         },
@@ -287,18 +287,6 @@ export default {
 
         },
         methods: {
-            pesquisarDadosModal(){
-                let url = "http://localhost:8000/api/v1/marca/" + this.$store.state.item.id
-
-                axios.get(url)
-                    .then(response => {
-                        this.dataMarcasModal = response.data
-                    })
-                    .catch(errors => {
-                        console.log(errors)
-                    })
-
-            },
             atualizar(){
 
                 let formData = new FormData()
