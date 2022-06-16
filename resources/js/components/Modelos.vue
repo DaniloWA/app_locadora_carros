@@ -288,13 +288,11 @@ export default {
         },
         methods: {
             pesquisarDadosModal(){
-                //console.log(this.busca)
                 let url = "http://localhost:8000/api/v1/marca/" + this.$store.state.item.id
 
                 axios.get(url)
                     .then(response => {
                         this.dataMarcasModal = response.data
-                        console.log(this.dataMarcasModal, " Teste ")
                     })
                     .catch(errors => {
                         console.log(errors)
@@ -360,7 +358,6 @@ export default {
             },
 
             pesquisar(){
-                //console.log(this.busca)
                 let filtro = ''
 
                 for(let chave in this.busca) {
@@ -387,7 +384,6 @@ export default {
                 axios.get(url)
                     .then(response => {
                         this.dataMarcas = response.data
-                        console.log(this.dataMarcas)
                     })
                     .catch(errors => {
                         console.log(errors)
@@ -440,7 +436,6 @@ export default {
                             mensagem: errors.response.data.message,
                             dados: errors.response.data.errors
                         }
-                        //console.log(errors.response.data)
                     })
             }
         },
