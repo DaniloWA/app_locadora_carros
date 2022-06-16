@@ -3,7 +3,9 @@
         <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col"  v-for="t, key in titulos" :key="key">{{t.titulo}}</th>
+                <template v-for="t, key in titulos">
+                    <th scope="col"  v-if="confirmTitle(t.titulo)" :key="key">{{ t.titulo }}</th>
+                </template>
                 <th v-if="visualizar.visivel || atualizar.visivel || remover.visivel"></th>
             </tr>
         </thead>
@@ -24,7 +26,6 @@
                      <button v-if="remover.visivel"  class="btn btn-outline-danger btn-sm" :data-toggle="remover.dataToggle" :data-target="remover.dataTarget" @click="setStore(obj)">Remover</button>
                 </td>
             </tr>
-
 
 
           <!--
@@ -60,17 +61,28 @@
                 this.$store.state.transacao.mensagem = ''
                 this.$store.state.transacao.dados = ''
                 this.$store.state.item = obj
+                console.log(obj, ' aqui ')
+            },
+            confirmTitle(titulo){
+                if(titulo == 'N/portas' || titulo == 'marca' || titulo == 'N/lugares'){
+                    return false
+                } else {
+                    return true
+                }
             }
         },
         computed: {
             dadosFiltrados(){
                 let campos = Object.keys(this.titulos)
+                console.log(this.titulos)
                 const dadosFiltrados = []
                 this.dados.map((item, chave) => {
 
                     let itemFiltrado = {}
                     campos.forEach(campo => {
-
+                        if(campo == 'lugares' || campo == 'marca' || campo == 'numero_portas'){
+                            return
+                        }
                         itemFiltrado[campo] = item[campo] // utilizar a sintaxe de array para atribuir valores a objetos
 
                     })
