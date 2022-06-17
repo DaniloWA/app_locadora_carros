@@ -186,52 +186,35 @@
         <!-- inicio modal de atualização de carro de carro -->
         <modal-component id="modalCarroAtualizar" titulo="Atualizar carro">
             <template v-slot:alertas>
-                <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao" v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
-                <alert-component tipo="danger" titulo="Erro na transação" :detalhes="$store.state.transacao" v-if="$store.state.transacao.status == 'erro'"></alert-component>
+                <alert-component tipo="success" v-if="transacaoStatus == 'adicionado'" :detalhes="transacaoDetalhes" titulo="Cadastro realizado com sucesso!"></alert-component>
+                <alert-component tipo="danger" :detalhes="transacaoDetalhes" titulo="Erro ao tentar cadastrar o carro" v-if="transacaoStatus == 'erro'"></alert-component>
             </template>
             <template v-slot:conteudo>
+                {{ $store.state.item.disponivel }} -- Disponivel
                 <div class="form-group">
-                    <input-container-component titulo="Marca do carro" id="atualizarModelo" id-help="atualizarModeloHelp" texto-ajuda="Informe a marca do carro">
-                        <select class="form-control" id="atualizarModelo" aria-describedby="atualizarModeloHelp" placeholder="Marca do carro" aria-placeholder="Selecione uma marca" v-model="selectMarca">
-                            <option value="" disabled hidden>Marca do carro</option>
-                            <option v-for="data, key in dataMarcas" :key="key" :value="data.id">{{ data.nome }}</option>
+                    <input-container-component titulo="Modelo do carro" id="atualizarModelo" id-help="atualizarModeloHelp" texto-ajuda="Informe a marca do carro">
+                        <select class="form-control" id="atualizarModelo" aria-describedby="atualizarModeloHelp" placeholder="Modelo do carro" aria-placeholder="Selecione uma marca" v-model="selectModelo">
+                            <option value="" disabled selected hidden>Modelo do carro</option>
+                            <option v-for="data, key in dataModelo" :key="key" :value="data.id">{{ data.nome }}</option>
                         </select>
                     </input-container-component>
                 </div>
 
                 <div class="form-group">
-                    <input-container-component titulo="Nome do carro" id="atualizarNome" id-help="atualizarNomeHelp" texto-ajuda="Informe o nome do carro">
-                        <input type="text" class="form-control" id="atualizarNome" aria-describedby="atualizarNomeHelp" placeholder="Nome do carro" v-model="$store.state.item.nome">
+                    <input-container-component titulo="Placa do carro" id="atualizarPlaca" id-help="atualizarPlacaHelp" texto-ajuda="Informe a Placa do carro">
+                        <input type="text" class="form-control" id="atualizarPlaca" aria-describedby="atualizarPlacaHelp" placeholder="Placa do carro" v-model="$store.state.item.placa">
                     </input-container-component>
                 </div>
 
                 <div class="form-group">
-                    <input-container-component titulo="Numero de portas" id="atualizarPortas" id-help="atualizarPortasHelp" texto-ajuda="Informe o numero de portas">
-                        <input type="number" class="form-control" id="atualizarPortas" aria-describedby="atualizarPortasHelp" placeholder="Numero de portas" v-model="$store.state.item.numero_portas">
+                    <input-container-component titulo="Quilometro do carro" id="atualizarQuilometro" id-help="atualizarQuilometroHelp" texto-ajuda="Informe a Quilometragem do carro">
+                        <input type="number" class="form-control" id="atualizarQuilometro" aria-describedby="atualizarQuilometroHelp" placeholder="Quilometro do carro" v-model="$store.state.item.km">
                     </input-container-component>
                 </div>
 
                 <div class="form-group">
-                    <input-container-component titulo="Numero de lugares" id="atualizarLugares" id-help="atualizarLugaresHelp" texto-ajuda="Informe o numero de lugares">
-                        <input type="number" class="form-control" id="atualizarLugares" aria-describedby="atualizarLugaresHelp" placeholder="Numero de lugares" v-model="$store.state.item.lugares">
-                    </input-container-component>
-                </div>
-
-                <div class="form-group">
-                    <input-container-component titulo="Airbag" id="atualizarAirbag" id-help="atualizarAirbagHelp" texto-ajuda="Informe se tem Airbag">
-                        <input type="checkbox" class="form-control" id="atualizarAirbag" aria-describedby="atualizarAirbagHelp" placeholder="Airbag" v-model="$store.state.item.air_bag">
-                    </input-container-component>
-                </div>
-
-                <div class="form-group">
-                    <input-container-component titulo="ABS" id="atualizarABS" id-help="atualizarABSHelp" texto-ajuda="Informe se tem ABS">
-                        <input type="checkbox" class="form-control" id="atualizarABS" aria-describedby="atualizarABSHelp" placeholder="ABS" v-model="$store.state.item.abs">
-                    </input-container-component>
-                </div>
-
-                <div class="form-group">
-                    <input-container-component titulo="Imagem" id="atualizarImagem" id-help="atualizarImagemHelp" texto-ajuda="Selecione uma imagem no formato PNG">
-                        <input type="file" class="form-control-file" id="atualizarImagem" aria-describedby="atualizarImagemHelp" placeholder="Selecione uma imagem" @change="carregarImagem($event)">
+                    <input-container-component titulo="Disponivel ?" id="atualizarDisponivel" id-help="atualizarDisponivelHelp" texto-ajuda="Informe se está Disponivel">
+                        <input type="checkbox" class="form-control" id="atualizarDisponivel" aria-describedby="atualizarDisponivelHelp" placeholder="Disponivel" v-model="$store.state.item.disponivel">
                     </input-container-component>
                 </div>
             </template>
