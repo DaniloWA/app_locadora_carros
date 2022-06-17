@@ -69,7 +69,7 @@
                                 </paginate-component>
                             </div>
                             <div class="col">
-                                <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modalModelo" @click="carregarMarcas()">Adicionar</button>
+                                <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#modalModelo">Adicionar</button>
                             </div>
                         </div>
                     </template>
@@ -440,6 +440,7 @@ export default {
                 this.arquivoImagem = e.target.files
             },
             salvar() {
+
                 let formData = new FormData();
                 formData.append('marca_id', this.selectMarca)
                 formData.append('nome', this.nomeModelo)
