@@ -352,14 +352,14 @@ export default {
 
                 axios.post(url, formData, config)
                     .then(response => {
+                        console.log(response)
                         this.$store.state.transacao.status = 'sucesso'
                         this.$store.state.transacao.mensagem = 'Registro de modelo atualizado com sucesso!'
-
-                        //limpando o campo de seleção de arquivos pelo ID
-                        novoImagem.value = ''
+                        atualizarImagem.value = ''
                         this.carregarLista()
                     })
                     .catch(errors => {
+                        console.log(errors)
                         this.$store.state.transacao.status = 'erro'
                         this.$store.state.transacao.mensagem = errors.response.data.message
                         this.$store.state.transacao.dados = errors.response.data.errors
