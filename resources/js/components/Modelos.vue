@@ -430,6 +430,7 @@ export default {
 
         mounted(){
             this.carregarLista()
+            this.carregarMarcas()
         }
     }
 </script>
