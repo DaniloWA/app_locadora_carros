@@ -259,14 +259,12 @@
                     <input-container-component titulo="Airbag" id="atualizarAirbag" id-help="atualizarAirbagHelp" texto-ajuda="Informe se tem Airbag">
                         <input type="checkbox" class="form-control" id="atualizarAirbag" aria-describedby="atualizarAirbagHelp" placeholder="Airbag" v-model="$store.state.item.air_bag">
                     </input-container-component>
-                    {{ $store.state.item.abs }} -- ABS
                 </div>
 
                 <div class="form-group">
                     <input-container-component titulo="ABS" id="atualizarABS" id-help="atualizarABSHelp" texto-ajuda="Informe se tem ABS">
                         <input type="checkbox" class="form-control" id="atualizarABS" aria-describedby="atualizarABSHelp" placeholder="ABS" v-model="$store.state.item.abs">
                     </input-container-component>
-                    {{ $store.state.item.abs }} -- ABS
                 </div>
 
                 <div class="form-group">
@@ -320,14 +318,6 @@ export default {
             }
         },
         methods: {
-            checkSelecteID(id){
-                if(id == this.$store.state.item.marca.id){
-                    console.log(id, ' -- true')
-                    return true
-                } else {
-                    return false
-                }
-            },
             atualizar(){
 
                 let formData = new FormData()

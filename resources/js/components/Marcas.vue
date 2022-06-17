@@ -302,7 +302,6 @@ export default {
                 axios.get(url)
                     .then(response => {
                         this.marcas = response.data
-                        console.log(this.marcas)
                     })
                     .catch(errors => {
                         console.log(errors)
