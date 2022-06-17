@@ -49,6 +49,7 @@ Vue.component('alert-component', require('./components/Alert.vue').default);
 Vue.component('paginate-component', require('./components/Paginate.vue').default);
 Vue.component('index-component', require('./components/Index.vue').default);
 Vue.component('modelos-component', require('./components/Modelos.vue').default);
+Vue.component('carros-component', require('./components/Carros.vue').default);
 
 
 
