@@ -317,20 +317,31 @@ export default {
             checkABS(){
                if(this.ABS == true ) return this.ABS = 1
                if(this.ABS == false ) return this.ABS = 0
-            },
-
+            }
         },
         methods: {
+            checkSelecteID(id){
+                if(id == this.$store.state.item.marca.id){
+                    console.log(id, ' -- true')
+                    return true
+                } else {
+                    return false
+                }
+            },
             atualizar(){
 
                 let formData = new FormData()
                 formData.append('_method', 'patch')
+                formData.append('marca_id', this.$store.state.item.marca.id)
                 formData.append('nome', this.$store.state.item.nome)
+                formData.append('numero_portas', this.$store.state.item.numero_portas)
+                formData.append('lugares', this.$store.state.item.lugares)
+                formData.append('air_bag', this.$store.state.item.air_bag)
+                formData.append('abs', this.$store.state.item.abs)
 
                 if(this.arquivoImagem[0]) {
                     formData.append('imagem', this.arquivoImagem[0])
                 }
-
 
                 let url = this.urlBase + '/' + this.$store.state.item.id
                 let config = {
