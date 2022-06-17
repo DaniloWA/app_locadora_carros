@@ -130,42 +130,24 @@
         <modal-component id="modalCarroVisualizar" titulo="Visualizar carro">
             <template v-slot:alertas></template>
             <template v-slot:conteudo>
-                <div>
-                </div>
                 <input-container-component titulo="ID">
                     <input type="text" class="form-control" :value="$store.state.item.id" disabled>
                 </input-container-component>
 
-                <input-container-component titulo="Nome">
-                    <input type="text" class="form-control" :value="$store.state.item.nome" disabled>
+                <input-container-component titulo="Placa">
+                    <input type="text" class="form-control" :value="$store.state.item.placa" disabled>
                 </input-container-component>
 
-                <input-container-component titulo="Marca">
-                    <input type="text" class="form-control" :value="$store.state.item.marca.nome" disabled>
+                <input-container-component titulo="KM">
+                    <input type="text" class="form-control" :value="$store.state.item.km" disabled>
                 </input-container-component>
 
-                <input-container-component titulo="Numero de portas">
-                    <input type="text" class="form-control" :value="$store.state.item.numero_portas" disabled>
-                </input-container-component>
-
-                <input-container-component titulo="Numero de lugares">
-                    <input type="text" class="form-control" :value="$store.state.item.lugares" disabled>
-                </input-container-component>
-
-                <input-container-component titulo="Airbag">
-                    <input type="text" class="form-control" :value="$store.state.item.air_bag == 1 ? 'sim' : 'não'" disabled>
-                </input-container-component>
-
-                <input-container-component titulo="ABS">
-                    <input type="text" class="form-control" :value="$store.state.item.abs == 1 ? 'sim' : 'não'" disabled>
-                </input-container-component>
-
-                <input-container-component titulo="Imagem">
-                    <img v-if="$store.state.item.imagem" :src="'storage/' + $store.state.item.imagem" alt="img">
+                <input-container-component titulo="Disponivel">
+                    <input type="text" class="form-control" :value="$store.state.item.disponivel" disabled>
                 </input-container-component>
 
                 <input-container-component titulo="Data de criação">
-                    <input type="text" class="form-control" :value="$store.state.item.created_at | formatadaDataTempo" disabled>
+                    <input type="text" class="form-control" :value="$store.state.item.created_at" disabled>
                 </input-container-component>
             </template>
             <template v-slot:rodape>
