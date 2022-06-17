@@ -47,14 +47,11 @@
                             dataTarget: '#modalCarroRemover'
                         }"
                         :titulos="{
-                            id: {titulo: 'ID', tipo: 'text'},
-                            nome:{titulo: 'Nome', tipo: 'text'},
-                            air_bag:{titulo: 'Airbag', tipo: 'boolean'},
-                            abs:{titulo: 'ABS', tipo: 'boolean'},
-                            numero_portas:{titulo: 'N/portas', tipo: 'off'},
-                            lugares:{titulo: 'N/lugares', tipo: 'off'},
-                            marca:{titulo: 'marca', tipo: 'off'},
-                            imagem:{titulo: 'Imagem', tipo: 'imagem'},
+                            id:{titulo: 'ID', tipo: 'text'},
+                            placa:{titulo: 'Placa', tipo: 'text'},
+                            modelo_id:{titulo: 'marca', tipo: 'off'},
+                            disponivel:{titulo: 'Disponivel', tipo: 'boolean'},
+                            km:{titulo: 'KM', tipo: 'text'},
                             created_at:{titulo: 'Data de criação', tipo: 'data'}
                         }"
                         ></table-component>
@@ -172,8 +169,8 @@
                     <input type="text" class="form-control" :value="$store.state.item.id" disabled>
                 </input-container-component>
 
-                <input-container-component titulo="Nome">
-                    <input type="text" class="form-control" :value="$store.state.item.nome" disabled>
+                <input-container-component titulo="Placa">
+                    <input type="text" class="form-control" :value="$store.state.item.placa" disabled>
                 </input-container-component>
             </template>
             <template v-slot:rodape>
@@ -379,6 +376,7 @@ export default {
 
                 axios.get(url)
                     .then(response => {
+                        console.log(response.data)
                         this.carro = response.data
                     })
                     .catch(errors => {
