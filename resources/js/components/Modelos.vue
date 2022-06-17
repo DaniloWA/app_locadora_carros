@@ -223,28 +223,62 @@
 
         <!-- inicio modal de atualização de modelo de modelo -->
         <modal-component id="modalModeloAtualizar" titulo="Atualizar modelo">
-
             <template v-slot:alertas>
                 <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao" v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
                 <alert-component tipo="danger" titulo="Erro na transação" :detalhes="$store.state.transacao" v-if="$store.state.transacao.status == 'erro'"></alert-component>
             </template>
-
             <template v-slot:conteudo>
                 <div class="form-group">
-                    <input-container-component titulo="Nome do modelo" id="novoNome" id-help="novoNomeHelp" texto-ajuda="Informe o nome do modelo">
-                        <input type="text" class="form-control" id="novoNome" aria-describedby="novoNomeHelp" placeholder="Nome do modelo" v-model="$store.state.item.nome">
+                    <input-container-component titulo="Marca do modelo" id="atualizarMarca" id-help="atualizarMarcaHelp" texto-ajuda="Informe a marca do modelo">
+                        <select class="form-control" id="atualizarMarca" aria-describedby="atualizarMarcaHelp" placeholder="Marca do modelo" aria-placeholder="Selecione uma marca" v-model="selectMarca">
+                            <option value="" disabled hidden>Marca do modelo</option>
+                            <option v-for="data, key in dataMarcas" :key="key" :value="data.id">{{ data.nome }}</option>
+                        </select>
                     </input-container-component>
                 </div>
+
                 <div class="form-group">
-                    <input-container-component titulo="Imagem" id="novoImagem" id-help="novoImagemHelp" texto-ajuda="Selecione uma imagem no formato PNG">
-                        <input type="file" class="form-control-file" id="novoImagem" aria-describedby="novoImagemHelp" placeholder="Selecione uma imagem" @change="carregarImagem($event)">
+                    <input-container-component titulo="Nome do modelo" id="atualizarNome" id-help="atualizarNomeHelp" texto-ajuda="Informe o nome do modelo">
+                        <input type="text" class="form-control" id="atualizarNome" aria-describedby="atualizarNomeHelp" placeholder="Nome do modelo" v-model="$store.state.item.nome">
+                    </input-container-component>
+                </div>
+
+                <div class="form-group">
+                    <input-container-component titulo="Numero de portas" id="atualizarPortas" id-help="atualizarPortasHelp" texto-ajuda="Informe o numero de portas">
+                        <input type="number" class="form-control" id="atualizarPortas" aria-describedby="atualizarPortasHelp" placeholder="Numero de portas" v-model="$store.state.item.numero_portas">
+                    </input-container-component>
+                </div>
+
+                <div class="form-group">
+                    <input-container-component titulo="Numero de lugares" id="atualizarLugares" id-help="atualizarLugaresHelp" texto-ajuda="Informe o numero de lugares">
+                        <input type="number" class="form-control" id="atualizarLugares" aria-describedby="atualizarLugaresHelp" placeholder="Numero de lugares" v-model="$store.state.item.lugares">
+                    </input-container-component>
+                </div>
+
+                <div class="form-group">
+                    <input-container-component titulo="Airbag" id="atualizarAirbag" id-help="atualizarAirbagHelp" texto-ajuda="Informe se tem Airbag">
+                        <input type="checkbox" class="form-control" id="atualizarAirbag" aria-describedby="atualizarAirbagHelp" placeholder="Airbag" v-model="$store.state.item.air_bag">
+                    </input-container-component>
+                    {{ $store.state.item.abs }} -- ABS
+                </div>
+
+                <div class="form-group">
+                    <input-container-component titulo="ABS" id="atualizarABS" id-help="atualizarABSHelp" texto-ajuda="Informe se tem ABS">
+                        <input type="checkbox" class="form-control" id="atualizarABS" aria-describedby="atualizarABSHelp" placeholder="ABS" v-model="$store.state.item.abs">
+                    </input-container-component>
+                    {{ $store.state.item.abs }} -- ABS
+                </div>
+
+                <div class="form-group">
+                    <input-container-component titulo="Imagem" id="atualizarImagem" id-help="atualizarImagemHelp" texto-ajuda="Selecione uma imagem no formato PNG">
+                        <input type="file" class="form-control-file" id="atualizarImagem" aria-describedby="atualizarImagemHelp" placeholder="Selecione uma imagem" @change="carregarImagem($event)">
                     </input-container-component>
                 </div>
             </template>
 
             <template v-slot:rodape>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" @click="atualizar()">Atualizar</button>
+                <button type="button" class="btn btn-primary" @click="atualizar()">Salvar</button>
             </template>
         </modal-component>
         <!-- final modal de atualização de modelo de modelo -->
