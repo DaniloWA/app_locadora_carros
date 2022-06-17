@@ -259,24 +259,18 @@ export default {
         },
         methods: {
             atualizar(){
-
                 let formData = new FormData()
                 formData.append('_method', 'patch')
-                formData.append('marca_id', this.$store.state.item.marca.id)
-                formData.append('nome', this.$store.state.item.nome)
-                formData.append('numero_portas', this.$store.state.item.numero_portas)
-                formData.append('lugares', this.$store.state.item.lugares)
-                formData.append('air_bag', this.$store.state.item.air_bag)
-                formData.append('abs', this.$store.state.item.abs)
+                formData.append('modelo_id', this.$store.state.item.modelo_id)
+                formData.append('placa', this.$store.state.item.placa)
+                formData.append('disponivel', this.$store.state.item.disponivel)
+                formData.append('km', this.$store.state.item.km)
 
-                if(this.arquivoImagem[0]) {
-                    formData.append('imagem', this.arquivoImagem[0])
-                }
 
                 let url = this.urlBase + '/' + this.$store.state.item.id
                 let config = {
                     headers: {
-                        'Content-Type': 'multipart/form-data',
+                        "Content-Type": "application/x-www-form-urlencoded"
                     }
                 }
 
@@ -285,7 +279,6 @@ export default {
                         console.log(response)
                         this.$store.state.transacao.status = 'sucesso'
                         this.$store.state.transacao.mensagem = 'Registro de carro atualizado com sucesso!'
-                        atualizarImagem.value = ''
                         this.carregarLista()
                     })
                     .catch(errors => {
@@ -341,7 +334,7 @@ export default {
 
             },
 
-            carregarMarcas(){
+            carregarModelos(){
                 let url = "http://localhost:8000/api/v1/modelo"
 
                 axios.get(url)
@@ -404,7 +397,7 @@ export default {
 
         mounted(){
             this.carregarLista()
-            this.carregarMarcas()
+            this.carregarModelos()
         }
     }
 </script>
